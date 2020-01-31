@@ -7,7 +7,8 @@ from .config import config_by_name, Config
 
 flask_bcrypt = Bcrypt()
 
-db = MongoClient(Config.MONGODB_URL)['Production']  # is Static at the time can be fetched via env variable
+database_name = 'Recipe-App'
+db = MongoClient(Config.MONGODB_URL)[database_name]  # is Static at the time can be fetched via env variable
 
 
 def create_app(config_name):
