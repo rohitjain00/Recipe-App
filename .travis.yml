@@ -10,17 +10,15 @@ matrix:
         - master
       before_script:
         - npm install -g @angular/cli
-        - npm install -g @compodoc/compodoc
-        - cd Client/
         - npm install
       script:
       - ng lint
-      - ng build --prod --base-href https://rohitjain00.github.io/ProjectManagement/
+      - ng build --prod --base-href https://rohitjain00.github.io/Recipe-App/
       deploy:
         provider: pages
         skip_cleanup: true
         github_token: $GITHUB_TOKEN
-        local_dir: Client/dist/projectManager
+        local_dir: dist/projectManager
         on:
           branch: master
     - language: python
