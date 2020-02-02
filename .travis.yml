@@ -21,7 +21,7 @@ matrix:
         local_dir: dist/Recipe-App
         on:
           branch: master
-    - language: python
+  - language: python
       python:
         - 3.7.6
       before_install:
