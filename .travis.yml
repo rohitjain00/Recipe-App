@@ -1,5 +1,28 @@
 matrix:
   include:
+    - language: node_js
+      node_js:
+        - "10.16.3"
+      dist: trusty
+      sudo: false
+      branches:
+        only:
+        - master
+      before_script:
+        - npm install -g @angular/cli
+        - npm install -g @compodoc/compodoc
+        - cd Client/
+        - npm install
+      script:
+      - ng lint
+      - ng build --prod --base-href https://rohitjain00.github.io/ProjectManagement/
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        local_dir: Client/dist/projectManager
+        on:
+          branch: master
     - language: python
       python:
         - 3.7.6
@@ -9,25 +32,3 @@ matrix:
       install:
         - pip install -r requirements.txt # install package + test dependencies
       script: python manage.py test
-
-    - language: node_js
-      node_js:
-        - 10.16.3
-        dist: trusty
-        sudo: false
-        branches:
-          only:
-          - master
-        before_script:
-          - npm install -g @angular/cli
-          - npm install
-        script:
-        - ng lint
-        - ng build --prod --base-href https://rohitjain00.github.io/Recipe-App/
-        deploy:
-          provider: pages
-          skip_cleanup: true
-          github_token: $GITHUB_TOKEN
-          local_dir: dist/Recipe-App
-          on:
-            branch: master
