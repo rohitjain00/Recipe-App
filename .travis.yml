@@ -1,32 +1,6 @@
-dist: xenial
-language: php
-php:
-  - '5.6'
-
-jobs:
+matrix:
   include:
-  - language: node_js
-      node_js:
-        - 10.16.3
-      dist: trusty
-      sudo: false
-      branches:
-        only:
-        - master
-      before_script:
-        - npm install -g @angular/cli
-        - npm install
-      script:
-      - ng lint
-      - ng build --prod --base-href https://rohitjain00.github.io/Recipe-App/
-      deploy:
-        provider: pages
-        skip_cleanup: true
-        github_token: $GITHUB_TOKEN
-        local_dir: dist/Recipe-App
-        on:
-          branch: master
-  - language: python
+    - language: python
       python:
         - 3.7.6
       before_install:
@@ -35,3 +9,25 @@ jobs:
       install:
         - pip install -r requirements.txt # install package + test dependencies
       script: python manage.py test
+
+    - language: node_js
+      node_js:
+        - 10.16.3
+        dist: trusty
+        sudo: false
+        branches:
+          only:
+          - master
+        before_script:
+          - npm install -g @angular/cli
+          - npm install
+        script:
+        - ng lint
+        - ng build --prod --base-href https://rohitjain00.github.io/Recipe-App/
+        deploy:
+          provider: pages
+          skip_cleanup: true
+          github_token: $GITHUB_TOKEN
+          local_dir: dist/Recipe-App
+          on:
+            branch: master
