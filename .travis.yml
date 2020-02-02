@@ -7,7 +7,7 @@ jobs:
   include:
   - language: node_js
       node_js:
-        - "10.16.3"
+        - 10.16.3
       dist: trusty
       sudo: false
       branches:
