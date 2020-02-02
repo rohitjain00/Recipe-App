@@ -8,7 +8,7 @@ import {RecipeComponent} from "./dashboard/recipe/recipe.component";
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard'},
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   { path: 'login', component:  LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'dashboard', component: DashboardComponent},
