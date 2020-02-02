@@ -1,8 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {LoginComponent} from "./login/login.component";
+import {RegisterComponent} from "./register/register.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
+import {UserComponent} from "./dashboard/user/user.component";
+import {RecipeComponent} from "./dashboard/recipe/recipe.component";
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', redirectTo: 'dashboard'},
+  { path: 'login', component:  LoginComponent},
+  { path: 'register', component: RegisterComponent},
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'dashboard/user', component: UserComponent},
+  { path: 'dashboard/:recipeId', component: RecipeComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
