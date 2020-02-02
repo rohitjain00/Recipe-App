@@ -18,7 +18,7 @@ matrix:
         provider: pages
         skip_cleanup: true
         github_token: $GITHUB_TOKEN
-        local_dir: dist/projectManager
+        local_dir: dist/Recipe-App
         on:
           branch: master
     - language: python
