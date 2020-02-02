@@ -1,5 +1,26 @@
 matrix:
   include:
+  - language: node_js
+      node_js:
+        - "10.16.3"
+      dist: trusty
+      sudo: false
+      branches:
+        only:
+        - master
+      before_script:
+        - npm install -g @angular/cli
+        - npm install
+      script:
+      - ng lint
+      - ng build --prod --base-href https://rohitjain00.github.io/Recipe-App/
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        local_dir: dist/Recipe-App
+        on:
+          branch: master
     - language: python
       python:
         - 3.7.6
