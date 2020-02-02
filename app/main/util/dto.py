@@ -16,9 +16,11 @@ class RecipeDto:
         'name': fields.String(required=True, description='ingredient\'s name'),
         'quantity': fields.String(required=True, description='ingredient\'s quantity')
     })
-    recipe = api.model('api', {
+    recipe = api.model('recipe', {
+        '_id': fields.String(required=False, description='unique Id of the recipe'),
         'title': fields.String(required=True, description='recipe\'s title'),
         'description': fields.String(required=True, description='recipe\'s description'),
         'ingredients': fields.List(fields.Nested(ingredient), required=True, description='recipe\'s ingredients'),
-        'instructions': fields.List(fields.String, required=True, description='recipe\'s instructions')
+        'instructions': fields.List(fields.String, required=True, description='recipe\'s instructions'),
+        'userId': fields.String(required=False, description='user id of recipe owner')
     })

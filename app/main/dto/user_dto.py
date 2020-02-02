@@ -46,16 +46,18 @@ def has_user(username, password):
     :param password: password of the user
     :return: True if exists False otherwise
     """
-    result = user_db.find_one({'username': username, 'password': password})
-    return result is not None
+    result = user_db.find_one({'username': username})
+    if result is None:
+        return False
+    password_hash = result.get('password')
+    return flask_bcrypt.check_password_hash(password_hash, password)
 
 
-def get_user_id(username, password):
+def get_user_id(username):
     """
     Get the _id of the user
     :param username: username of the user
-    :param password: password of the user
     :return: user_id of the user
     """
-    result = user_db.find_one({'username': username, 'password': password})
-    return result.get('_id')
+    result = user_db.find_one({'username': username})
+    return str(result.get('_id'))

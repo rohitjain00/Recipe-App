@@ -37,11 +37,15 @@ def get_authentication_token(user_id):
             'iat': datetime.datetime.utcnow(),
             'sub': user_id
         }
-        return jwt.encode(
+        print(type(payload))
+        print(payload)
+        auth_token = jwt.encode(
             payload,
             key,
             algorithm='HS256'
         )
+        print(auth_token)
+        return auth_token.decode('utf-8')
     except Exception as e:
         return e
 

@@ -33,7 +33,7 @@ def login(data):
     :return: {'status' : 'success', 'authenticationToken': 'asdfasdfa'}
     """
     username = data['username']
-    password = hash_password(data['password'])
+    password = data['password']
 
     if not has_user(username, password):
         response_object = {
@@ -41,7 +41,7 @@ def login(data):
             'authenticationToken': 'User does not exists'
         }
         return response_object, 404
-    user_id = get_user_id(username, password)
+    user_id = get_user_id(username)
     response_object = {
         'status': 'success',
         'authenticationToken': get_authentication_token(user_id)
