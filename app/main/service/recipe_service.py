@@ -16,28 +16,26 @@ def get_recipe(args):
     return get_recipes(query_text, limit, start)
 
 
-def get_recipe_user(args):
-
+def get_recipe_user(token):
     """
     Gets the Auth token of the user and sends all the recipe by that user
-    :param args:
     :return:
     """
-    authentication_token = args.get('authenticationToken')
+    authentication_token = token
     if not authentication_token or is_blacklist_token(authentication_token):
         return {'status': 'failure', 'message': 'Auth token not provided'}, 409
     user_id = decode_authentication_token(authentication_token)
     return get_recipes_user(user_id)
 
 
-def update_recipe(data, args):
+def update_recipe(data, token):
     """
     Get the updated data and auth token from the user and update recipe accordingly
+    :param token:
     :param data:
-    :param args:
     :return:
     """
-    authentication_token = args.get('authenticationToken')
+    authentication_token = token
     if not authentication_token or is_blacklist_token(authentication_token):
         return {'status': 'failure', 'message': 'Auth token not provided'}, 409
     user_id = decode_authentication_token(authentication_token)

@@ -31,8 +31,8 @@ class UserLogin(Resource):
     @api.doc("List all recipes of the current user")
     def get(self):
         """Returns all recipe of the user"""
-        args = request.args
-        return get_recipe_user(args=args)
+        token = request.headers.get('authenticationToken')
+        return get_recipe_user(token)
 
 
 @api.route('/u')
@@ -41,5 +41,5 @@ class UserLogout(Resource):
     def post(self):
         """Update Recipe"""
         data = request.json
-        args = request.args
-        return update_recipe(data=data, args=args)
+        token = request.headers.get('authenticationToken')
+        return update_recipe(data=data, token=token)

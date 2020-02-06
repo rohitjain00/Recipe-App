@@ -33,4 +33,4 @@ class UserLogout(Resource):
     @api.doc("User")
     def post(self):
         """Logout a user"""
-        return logout(request.args)
+        return logout(request.headers)
