@@ -2,7 +2,7 @@ from flask import request
 from flask_restplus import Resource
 
 from ..util.dto import UserDto
-from ..service.user_service import register, login, logout
+from ..service.user_service import register, login, logout, get_user_details
 
 api = UserDto.api
 _user = UserDto.user
@@ -26,6 +26,14 @@ class UserLogin(Resource):
         """Login a user"""
         post_data = request.json
         return login(data=post_data)
+
+
+@api.route('/detail')
+class UserDetails(Resource):
+    @api.doc("Get user details")
+    def get(self):
+        """Get a user's Details"""
+        get_user_details(request.args)
 
 
 @api.route('/logout')

@@ -1,5 +1,5 @@
 from app.main.dto.user_dto import hash_password, has_username, \
-    add_user, has_user, get_user_id
+    add_user, has_user, get_user_id, get_user_detail
 from app.main.util.auth import get_authentication_token, is_blacklist_token, blacklist_token
 
 
@@ -47,6 +47,25 @@ def login(data):
         'authenticationToken': get_authentication_token(user_id)
     }
     return response_object, 200
+
+
+def get_user_details(args):
+    """
+    Get user's details
+    :param args:
+    :return:
+    """
+    user_id = args.get('userId')
+    user = get_user_detail(user_id)
+    if user is None:
+        return {
+          'status': 'failure',
+          'message': 'No user exists'
+        }, 409
+    return {
+      'name': user.get('name'),
+      'username': user.get('username')
+    }, 200
 
 
 def logout(args):

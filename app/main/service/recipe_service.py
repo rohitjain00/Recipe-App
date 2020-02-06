@@ -1,4 +1,4 @@
-from app.main.dto.recipe_dto import get_recipes, get_recipes_user, update_recipe_user, add_recipe_user
+from app.main.dto.recipe_dto import get_recipes, get_recipes_user, update_recipe_user, add_recipe_user, get_recipe_id
 from app.main.util.auth import decode_authentication_token, is_blacklist_token
 
 
@@ -54,16 +54,25 @@ def update_recipe(data, token):
     return response_object, 409
 
 
-def add_recipe(data, args):
+def add_recipe(data, token):
     """
     Add Recipe associated with a user
     :param data:
     :param args:
     :return:
     """
-    authentication_token = args.get('authenticationToken')
+    authentication_token = token
     if not authentication_token or is_blacklist_token(authentication_token):
         return {'status': 'failure', 'message': 'Auth token not provided'}, 409
     user_id = decode_authentication_token(authentication_token)
     data['userId'] = user_id
     return add_recipe_user(data)
+
+
+def get_recipe_with_id(recipe_id):
+    """
+    Get recipe with given Id
+    :param recipe_id:
+    :return:
+    """
+    return get_recipe_id(recipe_id)

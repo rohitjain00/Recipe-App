@@ -1,4 +1,5 @@
 from app.main import db, flask_bcrypt
+from bson.objectid import ObjectId
 
 user_db = db.User
 
@@ -61,3 +62,13 @@ def get_user_id(username):
     """
     result = user_db.find_one({'username': username})
     return str(result.get('_id'))
+
+
+def get_user_detail(user_id):
+    """
+    Get the user via user_id
+    :param user_id:
+    :return:
+    """
+    result = user_db.find_one({'_id': ObjectId(user_id)})
+    return result

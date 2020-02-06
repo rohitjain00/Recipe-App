@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Ingredient} from '../../model/ingredient';
+import {RecipeFormService} from './recipe-form.service';
+import {AlertService} from '../../alert.service';
 
 @Component({
   selector: 'app-recipe-form',
@@ -9,7 +11,9 @@ import {Ingredient} from '../../model/ingredient';
 })
 export class RecipeFormComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private recipeFormService: RecipeFormService,
+              private alertService: AlertService) { }
   recipeForm: FormGroup;
   productForm: FormGroup;
 
@@ -24,6 +28,13 @@ export class RecipeFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.recipeForm.value);
+    const recipe = this.recipeFormService.convertToRecipe(this.recipeForm.value);
+    console.log(recipe);
+
+    this.recipeFormService.sendRecipe(recipe).subscribe((data: string) => {
+      console.log(data);
+      this.alertService.flashSuccessMessage('Recipe Added. Refresh to see yuor recipe');
+    });
   }
   get recipeInstructions() {
     return this.recipeForm.get('instructions') as FormArray;
@@ -46,5 +57,6 @@ export class RecipeFormComponent implements OnInit {
   deleteIngredient(index) {
     this.recipeIngredient.removeAt(index);
   }
+
 
 }

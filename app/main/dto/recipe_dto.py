@@ -22,7 +22,7 @@ def get_recipes_user(user_id):
     :param user_id:
     :return:
     """
-    return [recipe for recipe in recipe_db.find({'_id': ObjectId(user_id)})]
+    return [recipe for recipe in recipe_db.find({'userId': user_id})]
 
 
 def update_recipe_user(data, recipe_id):
@@ -41,4 +41,15 @@ def add_recipe_user(data):
     :param data:
     :return:
     """
+
     return str(recipe_db.insert_one(data).inserted_id)
+
+
+def get_recipe_id(recipe_id):
+    """
+    Get recipe data via Id
+    :param recipe_id:
+    :return:
+    """
+    result = recipe_db.find_one({'_id': ObjectId(recipe_id)})
+    return result

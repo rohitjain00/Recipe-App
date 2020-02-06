@@ -22,8 +22,12 @@ export class RecipeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.recipe = this.recipeService.getRecipeWithId(this.recipeId);
-    this.user = this.userService.getUserDetailsWithId(this.recipe.userId);
+    this.recipeService.getRecipeWithId(this.recipeId).subscribe((data: Recipe) => {
+      this.recipe = data;
+    });
+    this.userService.getUserDetailsWithId(this.recipe.userId).subscribe((data: User) => {
+      this.user = data;
+    });
   }
 
 }

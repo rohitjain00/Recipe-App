@@ -4,6 +4,7 @@ import {Recipe} from '../model/recipe';
 import {DashboardService} from './dashboard.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {RecipeList} from '../model/recipe-list';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +20,11 @@ export class DashboardComponent implements OnInit {
   currentUserUsername: string;
   recipes: Recipe[];
   searchForm: FormGroup;
+  start: number;
+  limit: number;
   ngOnInit() {
+    this.start = 0;
+    this.limit = 10;
     this.searchForm = this.formBuilder.group({
       search: ['']
     });
@@ -27,14 +32,29 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['login']);
     }
     this.currentUserUsername = this.localStorageService.getUserName();
-    this.recipes = this.dashboardService.getAllRecipe();
+    this.dashboardService.getAllUtil('', this.start, this.limit).subscribe((data: RecipeList) => {
+      this.recipes = data.recipes;
+    });
   }
 
   search() {
-    if (this.searchForm.value.search === '') {
-      this.recipes = this.dashboardService.getAllRecipe();
-    } else {
-      this.recipes = this.dashboardService.getRecipe(this.searchForm.value.search);
+      this.dashboardService.getAllUtil(this.searchForm.value.search, this.start, this.limit).subscribe((data: RecipeList) => {
+      this.recipes = data.recipes;
+    });
+  }
+
+  next() {
+    if (this.recipes.length <= 10) {
+      return;
     }
+    this.start += this.limit;
+    this.search();
+  }
+  previous() {
+    if (this.start === 0) {
+      return;
+    }
+    this.start -= this.limit;
+    this.search();
   }
 }
