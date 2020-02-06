@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {LocalStorageService} from "../local-storage.service";
-import {Recipe} from "../model/recipe";
-import {DashboardService} from "./dashboard.service";
-import {Router} from "@angular/router";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {LocalStorageService} from '../local-storage.service';
+import {Recipe} from '../model/recipe';
+import {DashboardService} from './dashboard.service';
+import {Router} from '@angular/router';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
   }
 
   search() {
-    if (this.searchForm.value.search == '') {
+    if (this.searchForm.value.search === '') {
       this.recipes = this.dashboardService.getAllRecipe();
     } else {
       this.recipes = this.dashboardService.getRecipe(this.searchForm.value.search);

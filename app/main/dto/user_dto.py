@@ -36,7 +36,7 @@ def add_user(username, password, name):
         'name': name
     }
     user_id = user_db.insert_one(insertion_object).inserted_id
-    return user_id
+    return str(user_id)
 
 
 def has_user(username, password):

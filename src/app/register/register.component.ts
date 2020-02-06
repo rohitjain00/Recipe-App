@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
-import {AlertService} from "../alert.service";
-import {Router} from "@angular/router";
-import {RegisterService} from "./register.service";
-import {LocalStorageService} from "../local-storage.service";
+import {FormBuilder, Validators} from '@angular/forms';
+import {AlertService} from '../alert.service';
+import {Router} from '@angular/router';
+import {RegisterService} from './register.service';
+import {LocalStorageService} from '../local-storage.service';
+import {Auth} from '../model/auth';
 
 @Component({
   selector: 'app-register',
@@ -18,9 +19,9 @@ export class RegisterComponent implements OnInit {
               private router: Router,
               private localStorageService: LocalStorageService) { }
   registerForm = this.formBuilder.group({
-      'name': ['', Validators.required],
-      'username': ['', Validators.required],
-      'password': ['', Validators.required]
+      name: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   ngOnInit() {
     if (this.localStorageService.isLoggedIn()) {
@@ -29,12 +30,17 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit() {
     const formValue = this.registerForm.value;
-    if (!this.registerService.register(formValue.name, formValue.username, formValue.password)) {
-      this.alertService.flashErrorMessage('User already Exists!. Please login to continue');
-    } else {
+    const user = {
+      username: formValue.username,
+      password: formValue.password,
+      name: formValue.name
+    };
+    this.registerService.registerUtil(user).subscribe((data: Auth) => {
+      console.log('data');
+      this.localStorageService.setAuthenticationToken(data.authenticationToken);
+      this.localStorageService.setUserName(formValue.username);
       this.alertService.flashSuccessMessage('Registration successful');
       this.router.navigate(['dashboard']);
-    }
+    });
   }
-
 }

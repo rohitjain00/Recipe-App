@@ -14,7 +14,7 @@ export class LocalStorageService {
 
   constructor(@Inject(LOCAL_STORAGE) private storageService: StorageService) { }
 
-  public setAuthenticationToken(authenticationToken: String) {
+  public setAuthenticationToken(authenticationToken: string) {
     this.storageService.set(AUTH_KEY, authenticationToken);
   }
   public setUserName(username) {
@@ -31,6 +31,6 @@ export class LocalStorageService {
     this.storageService.remove(USER_KEY);
   }
   public getAuthenticationToken() {
-    return this.storageService.get(AUTH_KEY)
+    return this.storageService.get(AUTH_KEY);
   }
 }

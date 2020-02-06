@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {LoginService} from "../login/login.service";
+import {Router} from '@angular/router';
+import {LoginService} from '../login/login.service';
 
 @Component({
   selector: 'app-navigation-bar',

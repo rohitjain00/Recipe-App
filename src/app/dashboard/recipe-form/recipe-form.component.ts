@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Ingredient} from "../../model/ingredient";
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Ingredient} from '../../model/ingredient';
 
 @Component({
   selector: 'app-recipe-form',
@@ -23,14 +23,14 @@ export class RecipeFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.recipeForm.value)
+    console.log(this.recipeForm.value);
   }
   get recipeInstructions() {
     return this.recipeForm.get('instructions') as FormArray;
   }
 
   addInstruction() {
-    this.recipeInstructions.push(this.formBuilder.group({instruction: ''}))
+    this.recipeInstructions.push(this.formBuilder.group({instruction: ''}));
   }
   deleteInstruction(index) {
     this.recipeInstructions.removeAt(index);
@@ -41,7 +41,7 @@ export class RecipeFormComponent implements OnInit {
   }
 
   addIngredient() {
-    this.recipeIngredient.push(this.formBuilder.group({name: '', quantity: ''}))
+    this.recipeIngredient.push(this.formBuilder.group({name: '', quantity: ''}));
   }
   deleteIngredient(index) {
     this.recipeIngredient.removeAt(index);

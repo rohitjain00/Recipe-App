@@ -9,17 +9,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import {DashboardComponent} from "./dashboard/dashboard.component";
-import {RecipeComponent} from "./dashboard/recipe/recipe.component";
-import {RecipeViewComponent} from "./dashboard/recipe-view/recipe-view.component";
-import {UserComponent} from "./dashboard/user/user.component";
+import {ReactiveFormsModule} from '@angular/forms';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {RecipeComponent} from './dashboard/recipe/recipe.component';
+import {RecipeViewComponent} from './dashboard/recipe-view/recipe-view.component';
+import {UserComponent} from './dashboard/user/user.component';
 import { RecipeFormComponent } from './dashboard/recipe-form/recipe-form.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule } from '@angular/material';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from "@angular/material/list";
+import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
