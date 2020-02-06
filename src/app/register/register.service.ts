@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class RegisterService {
 
   constructor() { }
+
+  register(name, username, password) {
+    return true;
+  }
 }

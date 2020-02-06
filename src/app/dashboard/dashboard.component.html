@@ -1,2 +1,12 @@
-<app-recipe-search></app-recipe-search>
+<form (ngSubmit)="search()" [formGroup]="searchForm">
+  <mat-form-field>
+    <input matInput placeholder="search" type="text" formControlName="search"/>
+  </mat-form-field>
+  <button mat-button type="submit"> Search </button>
+  </form>
+<button mat-raised-button routerLink="/user"><h3><mat-icon>user</mat-icon>{{currentUserUsername}}</h3></button>
+
+<div *ngFor="let recipe of recipes">
+  <app-recipe-view [recipe]="recipe"></app-recipe-view>
+</div>
 

@@ -1,1 +1,23 @@
-<p>register works!</p>
+<p>Register</p>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <label>
+    name:
+    <mat-form-field>
+    <input matInput placeholder="Name" type="text" formControlName="name">
+    </mat-form-field>
+  </label>
+  <label>
+    Username:
+    <mat-form-field>
+    <input matInput placeholder="Username" type="text" formControlName="username">
+      </mat-form-field>
+  </label>
+
+  <label>
+    Password :
+    <mat-form-field>
+    <input matInput type="password" formControlName="password">
+      </mat-form-field>
+  </label>
+  <button mat-button type="submit" [disabled]="!registerForm.valid">Register</button>
+</form>

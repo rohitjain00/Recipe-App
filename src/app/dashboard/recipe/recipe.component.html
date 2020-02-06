@@ -1,1 +1,24 @@
-<p>recipe works!</p>
+<mat-card>
+  <mat-card-title>{{recipe.title}}</mat-card-title>
+  <h3>About</h3>
+  <mat-card-subtitle>	{{recipe.description}}</mat-card-subtitle>
+  <mat-card-content>
+    Ingredients
+    <ul>
+      <li *ngFor="let ingredient of recipe.ingredients">
+        {{ingredient.name}} - {{ingredient.quantity}}
+      </li>
+    </ul>
+  </mat-card-content>
+  <mat-card-content>
+  <h3>
+    Instructions
+  </h3>
+    <ol>
+      <li *ngFor="let instruction of recipe.instructions">
+        {{instruction}}
+      </li>
+    </ol>
+  </mat-card-content>
+  <mat-card-footer> By : {{user.name}}	</mat-card-footer>
+</mat-card>

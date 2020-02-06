@@ -10,10 +10,10 @@ export class AlertService {
 
   constructor(private ngFlashMessageService: NgFlashMessageService) { }
 
-   public flashErrorMessage(errorMessage, errorCode) {
+   public flashErrorMessage(errorMessage) {
     this.ngFlashMessageService.showFlashMessage({
       // Array of messages each will be displayed in new line
-      messages: [errorMessage, errorCode],
+      messages: [errorMessage],
       // Whether the flash can be dismissed by the user defaults to false
       dismissible: true,
       // Time after which the flash disappears defaults to 2000ms

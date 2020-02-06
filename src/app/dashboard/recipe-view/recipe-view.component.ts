@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Recipe} from "../../model/recipe";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-recipe-view',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeViewComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private router: Router) { }
+  @Input() recipe: Recipe;
   ngOnInit() {
+    console.log(this.recipe);
   }
 
+  gotoRecipe(_id: string) {
+    this.router.navigate(['dashboard/' + this.recipe._id]);
+  }
 }

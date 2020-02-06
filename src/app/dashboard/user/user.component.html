@@ -1,1 +1,6 @@
-<p>user works!</p>
+<p>Hi, {{user.name}} Here you can see all your recipes</p>
+<app-recipe-form></app-recipe-form>
+
+<div *ngFor="let recipe of recipes">
+  <app-recipe-view [recipe]="recipe"></app-recipe-view>
+</div>
