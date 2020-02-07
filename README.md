@@ -4,7 +4,21 @@ Complete Documentation of the project is available [here](https://docs.google.co
 
 # RecipeApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.24.
+To start Frontend part : 
+run the following commands in root direcotry
+`npm install`
+`npm install -g @angular/cli`
+`ng serve --open`
+
+This will start a local server at `localhost:4200`
+
+To start the backend part :
+
+1. Install the dependencies from `requirements.txt` file as per your package manager
+2. In the root directory run the following command
+`python manage.py run`
+
+This will start a local server at `http://127.0.0.1:5000`
 
 ## Development server
 
