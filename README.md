@@ -4,10 +4,14 @@ Complete Documentation of the project is available [here](https://docs.google.co
 
 # RecipeApp
 
-To start Frontend part : 
+To start Frontend part :  
+
 run the following commands in root direcotry
+
 `npm install`
+
 `npm install -g @angular/cli`
+
 `ng serve --open`
 
 This will start a local server at `localhost:4200`
