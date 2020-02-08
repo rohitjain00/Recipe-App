@@ -1,7 +1,7 @@
 aniso8601==8.0.0
 attrs==19.3.0
 bcrypt==3.1.7
-cffi==1.13.2
+cffi==1.14.0
 Click==7.0
 dnspython==1.16.0
 Flask==1.1.1
@@ -23,4 +23,4 @@ pyrsistent==0.15.7
 pytz==2019.3
 six==1.14.0
 Werkzeug==0.16.1
-zipp==2.1.0
+zipp==2.2.0
