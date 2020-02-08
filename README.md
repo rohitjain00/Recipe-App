@@ -1,6 +1,4 @@
 [![Build Status](https://travis-ci.com/rohitjain00/Recipe-App.svg?token=5M47HtEEpBk1wLoBPeZH&branch=master)](https://travis-ci.com/rohitjain00/Recipe-App)
-
-
 [![codecov](https://codecov.io/gh/rohitjain00/Recipe-App/branch/master/graph/badge.svg?token=YH9RxqYHrV)](https://codecov.io/gh/rohitjain00/Recipe-App)
 
 
