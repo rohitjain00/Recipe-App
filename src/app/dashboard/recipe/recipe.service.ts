@@ -11,6 +11,6 @@ export class RecipeService {
   constructor(private httpClient: HttpClient) { }
   URL: string = environment.serverURL;
   getRecipeWithId(recipeId) {
-      return this.httpClient.get(this.URL + '/recipe/id' + recipeId);
+      return this.httpClient.get(this.URL + '/recipe/id/' + recipeId);
   }
 }

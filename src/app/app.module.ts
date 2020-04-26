@@ -23,6 +23,7 @@ import {MatCardModule} from '@angular/material/card';
 import {HttpClientModule} from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { environment } from '../environments/environment';
     RecipeComponent,
     RecipeViewComponent,
     UserComponent,
-    RecipeFormComponent
+    RecipeFormComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,45 +1,35 @@
 <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
-<label>
-    Title:
+
   <mat-form-field>
-    <input matInput placeholder="Title" type="text" formControlName="title">
-    </mat-form-field>
-  </label>
+    <input matInput placeholder="Title for recipe" type="text" formControlName="title">
+  </mat-form-field>
   <br>
-  <label>
-    Description:
-      <mat-form-field>
+  <mat-form-field>
     <textarea matInput placeholder="Description" type="text" formControlName="description"></textarea>
-      </mat-form-field>
-  </label>
-  <br>
-    <label>
-    Ingredients:
-    <div formArrayName="ingredients">
-      <div *ngFor="let ingredient of recipeIngredient.controls; let ingredientIndex=index" [formGroupName]="ingredientIndex">
-        <label>
-          Name : <mat-form-field><input matInput placeholder="Name" formControlName="name" /></mat-form-field>
-          Quantity : <mat-form-field><input matInput placeholder="Quantity" formControlName="quantity"></mat-form-field>
-        </label>
-        <button mat-button type="button" (click)="deleteIngredient(ingredientIndex)">Delete</button>
-      </div>
-      <button mat-button type="button" (click)="addIngredient()">Add Ingredient</button>
-    </div>
-  </label>
+  </mat-form-field>
   <br>
 
-<label>
-    Instructions:
+  <div formArrayName="ingredients">
+    <div *ngFor="let ingredient of recipeIngredient.controls; let ingredientIndex=index" [formGroupName]="ingredientIndex">
+      <label>
+        <mat-form-field><input matInput placeholder="Name" formControlName="name" /></mat-form-field>
+        <mat-form-field><input matInput placeholder="Quantity" formControlName="quantity"></mat-form-field>
+      </label>
+      <button mat-button type="button" (click)="deleteIngredient(ingredientIndex)">Delete</button>
+    </div>
+    <button mat-button type="button" (click)="addIngredient()">Add Ingredient</button>
+  </div>
+  <br>
+
     <div formArrayName="instructions">
       <div *ngFor="let instruction of recipeInstructions.controls; let instructionIndex=index" [formGroupName]="instructionIndex">
         <label>
-          Instruction : <mat-form-field><textarea matInput placeholder="Instruction" formControlName="instruction" ></textarea></mat-form-field>
+          <mat-form-field><textarea matInput placeholder="Instruction" formControlName="instruction" ></textarea></mat-form-field>
         </label>
         <button mat-button type="button" (click)="deleteInstruction(instructionIndex)">Delete</button>
       </div>
       <button mat-button type="button" (click)="addInstruction()">Add Instruction</button>
     </div>
-</label>
   <button mat-button type="submit" [disabled]="!recipeForm.valid">Add Recipe</button>
 </form>
-  {{ this.recipeForm.value | json}}
+<!--  {{ this.recipeForm.value | json}}-->
