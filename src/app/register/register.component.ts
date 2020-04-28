@@ -31,8 +31,8 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit() {
     const formValue = this.registerForm.value;
-    if (formValue.password != formValue.retypePassword) {
-      this.alertService.flashErrorMessage("Passwords do not match");
+    if (formValue.password !== formValue.retypePassword) {
+      this.alertService.flashErrorMessage('Passwords do not match');
       return;
     }
     const user = {
