@@ -4,3 +4,21 @@ a {
 h3 {
   color: white;
 }
+#search-home {
+  width: 100%;
+  padding: 50px 20px;
+  margin: 0 auto;
+  mat-form-field {
+    width: 75%;
+  }
+  button {
+    width: 10%;
+  }
+}
+#user-button {
+  width: 100%;
+  text-align: center;
+}
+.center {
+  text-align: center;
+}

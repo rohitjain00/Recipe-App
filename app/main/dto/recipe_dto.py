@@ -52,4 +52,5 @@ def get_recipe_id(recipe_id):
     :return:
     """
     result = recipe_db.find_one({'_id': ObjectId(recipe_id)})
+    result['_id'] = str(result['_id'])
     return result

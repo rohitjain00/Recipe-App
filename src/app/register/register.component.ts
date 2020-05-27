@@ -21,7 +21,8 @@ export class RegisterComponent implements OnInit {
   registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      retypePassword: ['', Validators.required]
     });
   ngOnInit() {
     if (this.localStorageService.isLoggedIn()) {
@@ -30,6 +31,10 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit() {
     const formValue = this.registerForm.value;
+    if (formValue.password !== formValue.retypePassword) {
+      this.alertService.flashErrorMessage('Passwords do not match');
+      return;
+    }
     const user = {
       username: formValue.username,
       password: formValue.password,

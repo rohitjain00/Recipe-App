@@ -12,10 +12,9 @@ export class RecipeViewComponent implements OnInit {
   constructor(private router: Router) { }
   @Input() recipe: Recipe;
   ngOnInit() {
-    console.log(this.recipe);
   }
 
   gotoRecipe(id: string) {
-    this.router.navigate(['dashboard/' + this.recipe.id]);
+    this.router.navigate(['dashboard/' + id]);
   }
 }

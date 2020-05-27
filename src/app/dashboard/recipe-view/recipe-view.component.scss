@@ -3,3 +3,8 @@ mat-card {
   margin : 20px auto;
   width: 80%;
 }
+mat-card {
+  &:hover {
+    cursor: pointer;
+  }
+}

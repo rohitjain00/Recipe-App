@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
     username: ['', Validators.required],
     password: ['', Validators.required]
   });
+  passwordHide = true;
+
   ngOnInit() {
     if (this.localStorageService.isLoggedIn()) {
       this.router.navigate(['dashboard']);
