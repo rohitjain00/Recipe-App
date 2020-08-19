@@ -33,7 +33,7 @@ class UserDetails(Resource):
     @api.doc("Get user details")
     def get(self):
         """Get a user's Details"""
-        get_user_details(request.args)
+        return get_user_details(request.args)
 
 
 @api.route('/logout')

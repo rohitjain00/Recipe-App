@@ -80,7 +80,7 @@ def logout(args):
             'status': 'failure',
             'message': 'Logout Failed'
         }
-        return response_object, 200
+        return response_object, 409
     blacklist_token(authentication_token)
     response_object = {
         'status': 'success',
