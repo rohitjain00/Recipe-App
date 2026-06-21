@@ -1,5 +1,5 @@
 from flask import request
-from flask_restplus import Resource
+from flask_restx import Resource
 
 from ..util.dto import RecipeDto
 from ..service.recipe_service import get_recipe, get_recipe_user, update_recipe, add_recipe, get_recipe_with_id
