@@ -1,7 +1,7 @@
-import datetime
 import jwt
-from ..config import key
+
 from app.main import db
+from .jwt_utils import decode_auth_token, encode_auth_token
 
 blacklist_db = db.Blacklist
 
@@ -29,41 +29,23 @@ def get_authentication_token(user_id):
     """
     Generates the Auth Token
     :param user_id: user_id of the user
-    :return: authToken on success Error otherwise
+    :return: authToken on success, raises jwt.PyJWTError on failure
     """
-    try:
-        payload = {
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1, seconds=5),
-            'iat': datetime.datetime.utcnow(),
-            'sub': user_id
-        }
-        print(type(payload))
-        print(payload)
-        auth_token = jwt.encode(
-            payload,
-            key,
-            algorithm='HS256'
-        )
-        print(auth_token)
-        return auth_token.decode('utf-8')
-    except Exception as e:
-        return e
+    return encode_auth_token(user_id)
 
 
 def decode_authentication_token(authentication_token):
     """
     Decodes the auth token
     :param authentication_token:
-    :return:
+    :return: user id on success, error message otherwise
     """
     try:
-        payload = jwt.decode(authentication_token, key)
-        is_blacklisted_token = is_blacklist_token(authentication_token)
-        if is_blacklisted_token:
-            return 'Token blacklisted. Please log in again.'
-        else:
-            return payload['sub']
+        payload = decode_auth_token(authentication_token)
     except jwt.ExpiredSignatureError:
         return 'Signature expired. Please log in again.'
     except jwt.InvalidTokenError:
         return 'Invalid token. Please log in again.'
+    if is_blacklist_token(authentication_token):
+        return 'Token blacklisted. Please log in again.'
+    return payload['sub']
