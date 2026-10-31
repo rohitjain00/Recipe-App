@@ -6,7 +6,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'my_precious_secret_key')
     DEBUG = False
-    MONGODB_URL = 'mongodb+srv://rohit:rohit@cluster0-ixzb5.mongodb.net/test?retryWrites=true&w=majority'
+    MONGODB_URL = os.getenv('MONGODB_URL', 'mongodb+srv://rohit:rohit@cluster0-ixzb5.mongodb.net/test?retryWrites=true&w=majority')
 
 
 class DevelopmentConfig(Config):
